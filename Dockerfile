@@ -6,4 +6,4 @@ COPY ./neural.py /data/
 COPY ./generate.py /data/
 COPY ./itemname.py /data/
 COPY ./main.py /data/
-CMD python3 /datamain.py
+CMD python3 main.py
