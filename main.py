@@ -16,16 +16,16 @@ tree = app_commands.CommandTree(client)
 
 queue = []
 
-guildID = os.environ['GUILD_ID']
-botID = os.environ['BOT_ID']
-magicForum = os.environ['MAGIC_ITEM_FORUM']
-raceForum = os.environ['RACE_FORUM']
-subclassForum = os.environ['SUBCLASS_FORUM']
-locationForum = os.environ['LOCATION_FORUM']
-monsterForum = os.environ['MONSTER_FORUM']
-npcForum = os.environ['NPC_FORUM']
-otherForum = os.environ['OTHER_FORUM']
-logChannel = os.environ['LOG_CHANNEL']
+guildID = int(os.environ['GUILD_ID'])
+botID = int(os.environ['BOT_ID'])
+magicForum = int(os.environ['MAGIC_ITEM_FORUM'])
+raceForum = int(os.environ['RACE_FORUM'])
+subclassForum = int(os.environ['SUBCLASS_FORUM'])
+locationForum = int(os.environ['LOCATION_FORUM'])
+monsterForum = int(os.environ['MONSTER_FORUM'])
+npcForum = int(os.environ['NPC_FORUM'])
+otherForum = int(os.environ['OTHER_FORUM'])
+logChannel = int(os.environ['LOG_CHANNEL'])
 autogen = True if os.environ['AUTOGEN'] == 'true' else False
 
 @client.event
