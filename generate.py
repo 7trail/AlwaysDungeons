@@ -1,5 +1,7 @@
 from poe_api_wrapper import PoeApi
 import os
+from dotenv import load_dotenv
+load_dotenv()
 client = PoeApi(os.environ['POE_TOKEN'])
 import asyncio
 

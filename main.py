@@ -26,7 +26,7 @@ monsterForum = os.environ['MONSTER_FORUM']
 npcForum = os.environ['NPC_FORUM']
 otherForum = os.environ['OTHER_FORUM']
 logChannel = os.environ['LOG_CHANNEL']
-autogen = True if os.environ('AUTOGEN') == 'true' else False
+autogen = True if os.environ['AUTOGEN'] == 'true' else False
 
 @client.event
 async def on_message(message):
