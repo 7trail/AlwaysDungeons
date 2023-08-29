@@ -104,6 +104,11 @@ async def conceptart(interaction, prompt:str):
 intervals = 0
 alreadyGenerating = False
 
+async def Log(loggedData):
+  log = client.get_channel(int(logChannel))
+  print(loggedData)
+  await log.send(loggedData)
+
 async def AddAutoGen(amount):
   if amount > 10 or not autogen:
     return
@@ -135,8 +140,7 @@ async def FlushQueue():
     if len(queue) > 0:
       obj = queue.pop(0)
       obj[1] = re.sub('[^A-Za-z0-9 ]+', '', obj[1])
-      log = client.get_channel(logChannel)
-      await log.send(f"**Now generating the {obj[0]} '{obj[1]}'**")
+      await Log(f"**Now generating the {obj[0]} '{obj[1]}'**")
       channel = client.get_channel(obj[3])
       st = f"Create a DND 5e {obj[0]} named the '{obj[1]}'. {obj[2]} Keep the final text under 300 words. Use markdown text formatting."
       c = await generate.GetText(st)
@@ -158,10 +162,8 @@ async def FlushQueue():
       
     alreadyGenerating = False
   except Exception as e:
-    
-    log = client.get_channel(logChannel)
-    await log.send("I'm just as confused as you are, there was an error somehow! The next time it should work though.")
-    await log.send("Error message: " + str(e))
+    await Log("I'm just as confused as you are, there was an error somehow! The next time it should work though.")
+    await Log("Error message: " + str(e))
     alreadyGenerating = False
 
 @client.event
@@ -169,8 +171,7 @@ async def on_ready():
     print("I'm in")
     print(client.user)
     await tree.sync(guild=discord.Object(id=guildID))
-    log = client.get_channel(logChannel)
-    await log.send("Bot now online")
+    await Log("Bot now online")
     FlushQueue.start()
 
 bot_token = os.environ['BOT_TOKEN']
