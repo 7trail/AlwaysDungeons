@@ -8,8 +8,6 @@ import random
 import re
 from discord import app_commands
 from discord.ext import tasks
-import keep_alive
-from keep_alive import keep_alive
 
 load_dotenv()
 
@@ -136,14 +134,12 @@ async def FlushQueue():
     
     if len(queue) > 0:
       obj = queue.pop(0)
-      keep_alive.header = obj[1]
       obj[1] = re.sub('[^A-Za-z0-9 ]+', '', obj[1])
       log = client.get_channel(logChannel)
       await log.send(f"**Now generating the {obj[0]} '{obj[1]}'**")
       channel = client.get_channel(obj[3])
       st = f"Create a DND 5e {obj[0]} named the '{obj[1]}'. {obj[2]} Keep the final text under 300 words. Use markdown text formatting."
       c = await generate.GetText(st)
-      keep_alive.body = c
       if len(c) > 1900:
         c2 = c[1899:(len(c)-1)]
         c = c[0:1899]
@@ -176,8 +172,6 @@ async def on_ready():
     log = client.get_channel(logChannel)
     await log.send("Bot now online")
     FlushQueue.start()
-
-keep_alive()
 
 bot_token = os.environ['BOT_TOKEN']
 client.run(bot_token)
