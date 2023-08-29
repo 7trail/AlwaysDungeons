@@ -105,7 +105,7 @@ intervals = 0
 alreadyGenerating = False
 
 async def AddAutoGen(amount):
-  if amount > 10 or !autogen:
+  if amount > 10 or not autogen:
     return
   for i in range(amount):
     v = random.choice([0,1,2,3 ])
@@ -177,5 +177,5 @@ async def on_ready():
 
 keep_alive()
 
-my_secret = os.environ['discordbot']
+my_secret = os.environ['DISCORDBOT']
 client.run(my_secret)
