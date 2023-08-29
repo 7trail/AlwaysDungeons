@@ -50,7 +50,7 @@ autogen enables or disables the bot's automatic production of homebrew content. 
 Example `docker run`:
 
 ```bash
-docker run -d -v /path/to/.env:/data/.env docker.askiiart.net/askiiart/createrepo_c
+docker run -d -v /path/to/.env:/data/.env docker.askiiart.net/askiiart/discord-always-dungeons
 ```
 
 Example `docker-compose.yml`:
