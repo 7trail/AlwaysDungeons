@@ -4,6 +4,7 @@ import requests
 from io import BytesIO
 from PIL import Image
 import discord
+import re
 
 def create_image(links):
   
@@ -27,7 +28,7 @@ async def Generate(prompt, channel, count=2, negativePrompt = "",size="square"):
     "isHd": False,
     "steps": 25,
     "cfgScale": 7.5,
-    "prompt": prompt,
+    "prompt": re.sub(r'\W+', '', prompt),
     "style": "anything",
     "layout": size,
     "negativePrompt": negativePrompt
