@@ -38,7 +38,7 @@ async def Generate(prompt, channel, count=2, negativePrompt = "",size="square"):
     "content-type":
     "application/json",
     "authorization":
-    os.environ['neural']
+    os.environ['NEURAL']
   }
   response = requests.post(url, json=payload, headers=headers)
   data = response.json()
@@ -54,7 +54,7 @@ async def Generate(prompt, channel, count=2, negativePrompt = "",size="square"):
     "accept":
     "application/json",
     "authorization":
-    os.environ['neural']
+    os.environ['NEURAL']
   }
   count = 0
   while True:
