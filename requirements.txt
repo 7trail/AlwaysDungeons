@@ -1,0 +1,6 @@
+discord
+Flask
+Pillow
+requests
+revChatGPT
+poe-api-wrapper
