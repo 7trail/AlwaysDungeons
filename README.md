@@ -1,18 +1,27 @@
-
 # AlwaysDungeons
+
 24-hour AI DND generation.
 
 ## Environment Variables
 
-|KEY|DESCRIPTION|
-|--|--|
-|DISCORDBOT|The discord bot's token.|
-|NEURAL|Your NeuralLove api key. Should look like "Bearer v...."|
-|PB|Your Quora api key. You'll sign into Quora on your browser, go into your Inspect Element -> Storage -> Quora.com cookies, and copy the m-b cookie. Used to access poe.com's ChatGPT bot.|
-|EMAIL|The email used with your ChatGPT account. Used as a fallback to poe.com, and not required to fill in.|
-|PASS|The password used with your ChatGPT account. Used as a fallback to poe.com, and not required to fill in.
-|
-
+| KEY              | DESCRIPTION                                                                                                                                                                              |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BOT_TOKEN        | The discord bot's token.                                                                                                                                                                 |
+| NEURAL           | Your NeuralLove api key. Should look like "Bearer v...."                                                                                                                                 |
+| POE_TOKEN        | Your Quora api key. You'll sign into Quora on your browser, go into your Inspect Element -> Storage -> Quora.com cookies, and copy the m-b cookie. Used to access poe.com's ChatGPT bot. |
+| OPENAI_EMAIL     | OPTIONAL, currently not implemented. The email used with your ChatGPT account. Used as a fallback to poe.com, and not required to fill in.                                               |
+| OPENAI_PASS      | OPTIONAL, currently not implemented. The password used with your ChatGPT account. Used as a fallback to poe.com, and not required to fill in.                                            |
+| GUILD_ID         | The ID of the server the bot is in.                                                                                                                                                      |
+| BOT_ID           | The ID of the bot itself.                                                                                                                                                                |
+| MAGIC_ITEM_FORUM | The channel ID of the magic item forum                                                                                                                                                   |
+| RACE_FORUM       | The channel ID of the race forum                                                                                                                                                         |
+| SUBCLASS_FORUM   | The channel ID of the subclass forum                                                                                                                                                     |
+| LOCATION_FORUM   | The channel ID of the location forum                                                                                                                                                     |
+| MONSTER_FORUM    | The channel ID of the monster forum                                                                                                                                                      |
+| NPC_FORUM        | The channel ID of the NPC forum                                                                                                                                                          |
+| OTHER_FORUM      | The channel ID of the other forum                                                                                                                                                        |
+| LOG_CHANNEL      | The channel ID of the log channel                                                                                                                                                        |
+| AUTOGEN          | Whether or not the bot should automatically generate content. (true/false)                                                                                                                            |
 
 ## Functionality
 
@@ -33,3 +42,30 @@ magicForum, raceForum, subclassForum, locationForum, monsterForum, npcForum, and
 logChannel is the channel that error messages and other announcements from the bot are posted in. Be sure to put this channel in a publicly visible place; it announces when a user's request is being fulfilled.
 
 autogen enables or disables the bot's automatic production of homebrew content. If this is not desired, change autogen to False.
+
+## Running the bot
+
+### Docker
+
+Example `docker run`:
+
+```bash
+docker run -d -v /path/to/.env:/data/.env docker.askiiart.net/askiiart/createrepo_c
+```
+
+Example `docker-compose.yml`:
+
+```yaml
+version: '3.7'
+services:
+  hugo:
+    image: docker.askiiart.net/askiiart/discord-always-dungeons
+    volumes:
+      - /path/to/.env:/data/.env
+```
+
+## Build the Docker image
+
+Just run `docker build .`
+
+Alternatively, you can just run `./build-and-push.sh`, which will build the image and push it to the registry. Just make sure to fix the variables before running it.

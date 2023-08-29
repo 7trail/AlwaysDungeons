@@ -1,6 +1,6 @@
 from poe_api_wrapper import PoeApi
 import os
-client = PoeApi(os.environ['PB'])
+client = PoeApi(os.environ['POE_TOKEN'])
 import asyncio
 
 #from revChatGPT.V1 import AsyncChatbot

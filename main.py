@@ -1,5 +1,5 @@
 import os
-
+from dotenv import load_dotenv
 import discord
 import generate
 import neural
@@ -11,22 +11,24 @@ from discord.ext import tasks
 import keep_alive
 from keep_alive import keep_alive
 
+load_dotenv()
+
 client = discord.Client(intents=discord.Intents.all())
 tree = app_commands.CommandTree(client)
 
 queue = []
 
-guildID = 1081397933276155977
-botID = 1144041248303366314
-magicForum = 1144040531240964256
-raceForum = 1144075835217825868
-subclassForum = 1144075898870579290
-locationForum = 1144075950749925457
-monsterForum = 1144081512724176947
-npcForum = 1144425240018034878
-otherForum = 1144426051720724602
-logChannel = 1144064721922834582
-autogen = True
+guildID = os.environ['GUILD_ID']
+botID = os.environ['BOT_ID']
+magicForum = os.environ['MAGIC_ITEM_FORUM']
+raceForum = os.environ['RACE_FORUM']
+subclassForum = os.environ['SUBCLASS_FORUM']
+locationForum = os.environ['LOCATION_FORUM']
+monsterForum = os.environ['MONSTER_FORUM']
+npcForum = os.environ['NPC_FORUM']
+otherForum = os.environ['OTHER_FORUM']
+logChannel = os.environ['LOG_CHANNEL']
+autogen = True if os.environ('AUTOGEN') == 'true' else False
 
 @client.event
 async def on_message(message):
@@ -177,5 +179,5 @@ async def on_ready():
 
 keep_alive()
 
-my_secret = os.environ['DISCORDBOT']
-client.run(my_secret)
+bot_token = os.environ['BOT_TOKEN']
+client.run(bot_token)
