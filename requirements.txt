@@ -3,3 +3,4 @@ Pillow
 requests
 revChatGPT
 poe-api-wrapper
+python-dotenv
