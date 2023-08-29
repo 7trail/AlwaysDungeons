@@ -1,5 +1,4 @@
 discord
-Flask
 Pillow
 requests
 revChatGPT
