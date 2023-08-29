@@ -17,6 +17,7 @@ tree = app_commands.CommandTree(client)
 queue = []
 
 guildID = 1081397933276155977
+botID = 1144041248303366314
 magicForum = 1144040531240964256
 raceForum = 1144075835217825868
 subclassForum = 1144075898870579290
@@ -24,8 +25,8 @@ locationForum = 1144075950749925457
 monsterForum = 1144081512724176947
 npcForum = 1144425240018034878
 otherForum = 1144426051720724602
-botID = 1144041248303366314
 logChannel = 1144064721922834582
+autogen = True
 
 @client.event
 async def on_message(message):
@@ -45,13 +46,13 @@ async def magicitem(interaction, name:str, desc: str = ""):
 
 @tree.command(name = "race", description = "Generate a new race!", guild=discord.Object(id=guildID))
 async def race(interaction, name:str, desc: str = ""):
-  queue.append(["race", name,desc, , interaction.user.id])
+  queue.append(["race", name,desc, raceForum, interaction.user.id])
   embedVar = discord.Embed(title=f'Queue position: {len(queue)}', description=f"It won't be long until we get around to the '{name}'!", color=0xffff00)
   await interaction.response.send_message(embed=embedVar)
   
 @tree.command(name = "subclass", description = "Generate a new subclass!", guild=discord.Object(id=guildID))
 async def subclass(interaction, name:str, desc: str = ""):
-  queue.append(["subclass", name,desc, , interaction.user.id])
+  queue.append(["subclass", name,desc, subclassForum, interaction.user.id])
   embedVar = discord.Embed(title=f'Queue position: {len(queue)}', description=f"It won't be long until we get around to the '{name}'!", color=0xffff00)
   await interaction.response.send_message(embed=embedVar)
   
@@ -69,7 +70,7 @@ async def monster(interaction, name:str, desc: str = ""):
 
 @tree.command(name = "npc", description = "Generate a new npc!", guild=discord.Object(id=guildID))
 async def npc(interaction, name:str, desc: str = ""):
-  queue.append(["NPC", name,desc + ". Provide a stat block for the NPC, but also include a bond, ideal, personality trait, and flaw. Offer a potential quest involving the NPC.", , interaction.user.id])
+  queue.append(["NPC", name,desc + ". Provide a stat block for the NPC, but also include a bond, ideal, personality trait, and flaw. Offer a potential quest involving the NPC.", npcForum, interaction.user.id])
   embedVar = discord.Embed(title=f'Queue position: {len(queue)}', description=f"It won't be long until we get around to the '{name}'!", color=0xffff00)
   await interaction.response.send_message(embed=embedVar)
 
@@ -104,7 +105,7 @@ intervals = 0
 alreadyGenerating = False
 
 async def AddAutoGen(amount):
-  if amount > 10:
+  if amount > 10 or !autogen:
     return
   for i in range(amount):
     v = random.choice([0,1,2,3 ])
@@ -117,7 +118,7 @@ async def AddAutoGen(amount):
     elif v == 3:
       queue.append(["spell", itemname.makeItem(itemname.spells).title(),"Be sure to follow all rules surrounding the spell.", otherForum, -1])
 
-@tasks.loop(minutes=0.25)
+@tasks.loop(minutes=0.4)
 async def FlushQueue():
   global alreadyGenerating
   global intervals
@@ -127,7 +128,7 @@ async def FlushQueue():
     alreadyGenerating = True
 
     if len(queue) == 0:
-      intervals = (intervals+1)%10
+      intervals = (intervals+1)%6
       if intervals == 0:
         await AddAutoGen(1)
     
