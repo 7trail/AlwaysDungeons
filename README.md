@@ -1,5 +1,7 @@
 # AlwaysDungeons
 
+[![Build Status](https://drone.askiiart.net/api/badges/askiiart/AlwaysDungeons/status.svg?ref=refs/heads/main)](https://drone.askiiart.net/askiiart/AlwaysDungeons)
+
 24-hour AI DND generation.
 
 ## Environment Variables
