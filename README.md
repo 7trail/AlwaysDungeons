@@ -1,4 +1,4 @@
-# AlwaysDungeons
+# AlwaysDungeons ([mirror](https://git.askiiart.net/askiiart/AlwaysDungeons))
 
 [![Build Status](https://drone.askiiart.net/api/badges/askiiart/AlwaysDungeons/status.svg?ref=refs/heads/main)](https://drone.askiiart.net/askiiart/AlwaysDungeons)
 
