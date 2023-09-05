@@ -145,10 +145,13 @@ async def FlushQueue():
       st = f"Create a DND 5e {obj[0]} named the '{obj[1]}'. {obj[2]} Keep the final text under 300 words. Use markdown text formatting."
       c = await generate.GetText(st)
       if len(c) > 1900:
-        c2 = c[1899:(len(c)-1)]
-        c = c[0:1899]
-        thread = await channel.create_thread(name = obj[1], content = c + " (Truncated)")
-        await thread.thread.send(c2)
+        
+        c3 = c[0:1899]
+        thread = await channel.create_thread(name = obj[1], content = c3 + " (Truncated)")
+        for i in range((len(c)//1900)):
+          f = 1899*(i+1)
+          c2 = c[f:min(len(c)-1,f+1900)]
+          await thread.thread.send(c2)
         if (obj[4]!=-1):
           await thread.thread.send("<@" + str(obj[4]) + ">")
         else:
