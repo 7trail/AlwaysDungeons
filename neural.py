@@ -79,6 +79,7 @@ async def Generate(prompt, channel, count=2, negativePrompt = "",size="square"):
 
     data2 = response2.json()
     if data2["status"]["isReady"]:
+      print("Awesome! Debugging!")
       links = []
       view = ViewWithButton(parameter=channel,p2=prompt) # Establish an instance of the discord.ui.View class
 
