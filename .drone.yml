@@ -2,11 +2,15 @@ kind: pipeline
 name: default
 
 steps:
-- name: Remove extra stuff to make Docker images lighter
-  image: alpine:latest
+- name: Make semi-static build with pyinstaller (NOT actually static)
+  image: python:latest
   commands:
-  - apk add git
-  - cd /drone/src && git apply docker.patch
+  - apt-get update
+  - apt-get install binutils -y
+  - pip install pyinstaller
+  - cd /drone/src && pip install -r requirements.txt && pyinstaller main.py
+  - chmod 777 /repo/dist/main/main
+  - cd /drone/src/dist/main && tar cvfz /drone/src/AlwaysDungeons.tar.gz *  
 - name: build and publish
   image: plugins/docker
   pull: always
