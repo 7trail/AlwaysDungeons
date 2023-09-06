@@ -1,3 +1,4 @@
-FROM scratch
-COPY dist/main/ /
-CMD ["/main"]
+FROM python:slim-bookworm
+WORKDIR /data
+ADD AlwaysDungeons.tar.gz /data
+CMD ["/data/main"]

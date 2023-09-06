@@ -2,3 +2,4 @@ dist/
 build/
 .env
 *.spec
+AlwaysDungeons.tar.gz
