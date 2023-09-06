@@ -52,7 +52,7 @@ autogen enables or disables the bot's automatic production of homebrew content. 
 Example `docker run`:
 
 ```bash
-docker run -d -v /path/to/.env:/data/.env docker.askiiart.net/askiiart/discord-always-dungeons
+docker run -d --env-file /path/to/.env docker.askiiart.net/askiiart/discord-always-dungeons
 ```
 
 Example `docker-compose.yml`:
@@ -62,8 +62,8 @@ version: '3.7'
 services:
   hugo:
     image: docker.askiiart.net/askiiart/discord-always-dungeons
-    volumes:
-      - /path/to/.env:/data/.env
+    env_file:
+      - /path/to/.env
 ```
 
 ## Build the Docker image
@@ -73,6 +73,14 @@ Run this to build the image:
 ```bash
 git apply docker.patch
 docker build .
+```
+
+## Run the dev image
+
+This image is built for development. It mounts the current directory to /data, installs all the dependencies, and runs the bot from there. Keep in mind this runs differently than the production image. It uses load_dotenv, not `--env-file`.
+
+```bash
+docker run -v .:/data docker.askiiart.net/askiiart/always-dungeons-testing
 ```
 
 Alternatively, you can just run `./build-and-push.sh`, which will apply the patch, build the image, and push it to the registry. Just make sure to fix the variables before running it.
