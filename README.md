@@ -68,6 +68,11 @@ services:
 
 ## Build the Docker image
 
-Just run `docker build .`
+Run this to build the image:
 
-Alternatively, you can just run `./build-and-push.sh`, which will build the image and push it to the registry. Just make sure to fix the variables before running it.
+```bash
+git apply docker.patch
+docker build .
+```
+
+Alternatively, you can just run `./build-and-push.sh`, which will apply the patch, build the image, and push it to the registry. Just make sure to fix the variables before running it.

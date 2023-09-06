@@ -2,6 +2,11 @@ kind: pipeline
 name: default
 
 steps:
+- name: Remove extra stuff to make Docker images lighter
+  image: alpine:latest
+  commands:
+  - apk add git
+  - cd /drone/src && git apply docker.patch
 - name: build and publish
   image: plugins/docker
   pull: always
