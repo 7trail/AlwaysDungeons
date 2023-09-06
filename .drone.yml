@@ -5,6 +5,7 @@ steps:
 - name: Make semi-static build with pyinstaller (NOT actually static)
   image: python:latest
   commands:
+  - git apply docker.patch
   - apt-get update
   - apt-get install binutils -y
   - pip install pyinstaller
