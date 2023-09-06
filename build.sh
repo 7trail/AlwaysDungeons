@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
+# ORG and NAME aren't used unless push is enabled.
 ORG="askiiart"
 NAME="discord-always-dungeons"
+PUSH="false"
 
 # Apply patch for Docker
 git apply docker.patch
@@ -11,5 +13,9 @@ docker run -v .:/repo python /bin/sh -c "cd /repo && pip install -r requirements
 ID=$(docker build . -q)
 
 # Could just do -t on the build, but this makes it easier to expand if needed.
-docker tag ${ID} ${ORG}/${NAME}:latest
-docker push ${ORG}/${NAME}:latest
+if [ $ID == "true" ]; then
+    docker tag ${ID} ${ORG}/${NAME}:latest
+    docker push ${ORG}/${NAME}:latest
+else
+    echo Docker image ID: $ID
+fi
