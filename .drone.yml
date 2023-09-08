@@ -9,7 +9,7 @@ steps:
       from_secret: gitea_token
   commands:
   - 'curl -X "POST" "https://git.askiiart.net/api/v1/repos/askiiart/AlwaysDungeons/mirror-sync?access_token=${GITEA_TOKEN}" -H "accept: application/json" -d ""'
-  - git pull
+  - git pull origin main
   - git apply docker.patch
   - apt-get update
   - apt-get install binutils -y
