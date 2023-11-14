@@ -1,4 +1,4 @@
-FROM python:slim-bookworm
+FROM python:3.11-slim-bookworm
 WORKDIR /data
 RUN apt update && apt install -y rust-all
 ADD AlwaysDungeons.tar.gz /data
