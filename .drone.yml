@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: Make semi-static build with pyinstaller (NOT actually static)
-  image: python:latest
+  image: python:3.11-bookworm
   environment:
     GITEA_TOKEN:
       from_secret: gitea_token
