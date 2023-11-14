@@ -60,7 +60,7 @@ Example `docker-compose.yml`:
 ```yaml
 version: '3.7'
 services:
-  hugo:
+  always-dungeons:
     image: docker.askiiart.net/askiiart/discord-always-dungeons
     env_file:
       - /path/to/.env
@@ -89,7 +89,7 @@ docker run -v .:/data docker.askiiart.net/askiiart/always-dungeons-testing
 ```yaml
 version: '3.7'
 services:
-  hugo:
+  always-dungeons:
     image: docker.askiiart.net/askiiart/discord-always-dungeons
     volumes:
       - .:/data
